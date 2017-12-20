@@ -1,2 +1,0 @@
-# UVSQ
-Projet universitaire 

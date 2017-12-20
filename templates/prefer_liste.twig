@@ -1,0 +1,55 @@
+{% include 'header.twig' %}
+{% include 'nav-bar.twig' %}
+
+<div class="container">
+
+    <div class="row" >
+
+    <div class="col-md-12">
+    <div class="tete">Mes préferences</div>
+    
+    <div class="col-md-6">
+        <div class="pull-right">
+            <input type="text" name="q" id="system-search">
+      
+        </div>
+    </div>
+
+    </div>
+   
+</div>
+    
+
+<table id="preferences" class="table table-hover table-bordered" cellspacing="0" width="100%" id="paginated">
+        <thead>
+            <tr>
+                <th style="width: 7%">Id</th>
+                <th style="width: 15%">Evenement</th>
+                <th style="width: 9%">Date</th>
+                <th >Description</th>
+                <th style="width: 14%">Action</th>
+            </tr>
+        </thead>
+          <tbody id="myTable">
+                    {% for row in rows %}
+            <tr>
+                <td>{{row.id}}</td>
+                <td>{{row.titre}}</td>
+                <td>{{row.date_choix| date('Y-m-d')}}</td>
+                <td>{{row.description[:30]}} ...</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-xs" id="connexion"  >Consulter</button>
+                    <button type="button" data-id="{{row.id}}" onclick="annuler_vote(event)" class="btn btn-warning btn-xs" id="connexion" > Annuler</button>
+                </td>
+            
+                </tr>   
+           {% endfor %}
+             
+
+
+       </tbody>
+           
+   </table>
+ 
+
+{% include 'footer.twig' %}

@@ -1,0 +1,108 @@
+
+{% include 'header.twig' %}
+{% include 'nav-bar.twig' %}
+
+<div class="container">
+
+    <div class="row" >
+
+    <div class="col-md-12">
+    <div class="col-md-6">dsdsd</div>
+    
+    <div class="col-md-6">
+        <div class="pull-right">
+            <input type="text" name="q" id="system-search">
+                    {% if para.statut ==2 %}
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn" id="add_event"> 
+
+                     <strong class="glyphicon glyphicon-plus" aria-hidden="true" id="add"></strong>
+            </button>
+            {%endif%}
+        </div>
+    </div>
+
+    </div>
+   
+</div>
+
+<div id="message"></div>
+
+<table id="preferences" class="table table-hover table-bordered" cellspacing="0" width="100%" id="paginated">
+        <thead>
+            <tr>
+                <th style="width: 7%">Id</th>
+                <th style="width: 15%">Titre</th>
+                <th style="width: 9%">Debut</th>
+                <th style="width: 9%">Fin</th>
+                <th >Description</th>
+                <th style="width: 7%">Assigné</th>
+                <th style="width: 9%">Date de creation</th>
+                <th style="width: 14%">Action</th>
+            </tr>
+        </thead>
+          <tbody id="myTable">
+            {% for row in  rows %}
+            <tr id="{{row.id}}">
+                <td>{{row.id}}</td>
+                <td> {{row.titre}} </td>
+                <td> {{row.pre_jour| date('d-m-Y')}} </td>
+                <td>  {{row.last_jour| date('d-m-Y')}} </td>
+                <td> {{row.description[:60]}} ...</td>
+                <td> {{row.nom}} </td>
+                <td>{{row.date_creation| date('d-m-Y')}}</td>
+
+                <td>
+                    <button type="button" class="btn btn-primary btn-xs" id="connexion"> Consulter</button>
+                    {% if para.statut==2%}
+                    <button type="button" class="btn btn-danger btn-xs" id="connexion" onclick="event_delete(event)" > Supprimer</button>
+                    {% endif %}
+                </td>
+            </tr> 
+            {% endfor   %}
+
+
+           
+             
+
+
+       </tbody>
+   </table>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Créer un evénement</h4>
+      </div>
+      <div class="modal-body">
+        
+
+
+<form action="/add_event" method="post">
+  <div class="form-group">
+    <label for="titre">Titre</label>
+    <input type="text" class="form-control" id="titre" placeholder="Titre" name="titre">
+  </div>
+  <div class="form-group">
+    <label for="tag">Début de l'evenement </label>
+    <input type="date" class="form-control" id="tag" placeholder="Tag : systeme,.." name="debut">
+  </div>
+  <div class="form-group">
+    <label for="tag">Fin de l'evenement </label>
+    <input type="date" class="form-control" id="sysdis" placeholder="Linux,Debian : systeme,.." name="fin">
+  </div>
+ <div class="form-group">
+            <label for="message-text" class="control-label">Description</label>
+            <textarea class="form-control" id="desc" name="desc"></textarea>
+          </div>
+  
+  <button type="submit" class="btn btn-primary" name="subs" onclick="">Ajouter</button>
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+{% include 'footer.twig' %}
