@@ -4,7 +4,7 @@
 	<b>Abderrahman IDOUHAMMOU (21501456) </b>
 	<b>TP N° 1</b>
 
-	<?php phpinf(INFO_MODULES); ?>
+	<?php echo phpinfo(INFO_MODULES); ?>
 </body>
 </html>
 
