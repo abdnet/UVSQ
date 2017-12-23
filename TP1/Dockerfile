@@ -19,9 +19,8 @@ ENV APACHE_PID_FILE /var/run/apache2.pid
 #isnatllation git
 RUN apt-get -y install git
 
-RUN git clone https://github.com/abdnet/dictionnaire.git /var/www/html
-
-
+RUN git clone -b apps https://github.com/abdnet/UVSQ.git
+COPY UVSQ/index.php var/www/html
 #Expose apache
 EXPOSE 80
 
