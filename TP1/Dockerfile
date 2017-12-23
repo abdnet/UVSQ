@@ -20,11 +20,12 @@ ENV APACHE_PID_FILE /var/run/apache2.pid
 RUN apt-get -y install git
 
 RUN git clone -b apps https://github.com/abdnet/UVSQ.git
-COPY UVSQ/index.php var/www/html
+RUN cp UVSQ/index.php var/www/html
+RUN rm -rf var/www/html/index.html
 #Expose apache
 EXPOSE 80
 
-ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
+#ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 
